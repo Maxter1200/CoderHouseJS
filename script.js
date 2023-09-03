@@ -1,77 +1,170 @@
+// Clase Producto
+class Product{
+    constructor(id, name, price){
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+}
+
+// Array base de Objetos
+const products = [
+    new Product(1, "Notebook HP", 500),
+    new Product(2, "Notebook Acer", 550),
+    new Product(3, "Notebook Lenovo", 600),
+    new Product(4, "Notebook Asus", 700),
+    new Product(5, "Notebook Dell", 750)
+];
+
+
 // MENUS
-const menu0 = ""
+const menu = ""
 +"-------------MENU-------------\n"
-+"1 - Comprar productos\n"
-+"2 - Ver descuentos\n"
-+"3 - Ver Precio Final\n"
++"1 - Productos\n"
++"2 - Descuentos\n"
++"3 - Precio de Compra\n"
 +"0 - Salir\n"
 +"------------------------------";
 
-const menu1 = ""
-+"-----------PRODUCTO-----------\n"
-+"1 - Notebook HP - $500\n"
-+"2 - Notebook Acer - $550\n"
-+"3 - Notebook Lenovo - $600\n"
-+"4 - Notebook Asus - $700\n"
-+"5 - Notebook Dell - $750\n"
-+"0 - Volver\n"
-+"------------------------------";
+function menuProd(){
+    let prodList = "";
 
-const menu2 = ""
+    for(const prod of products){
+        prodList += `${prod.id} - ${prod.name} - $${prod.price}\n`;
+    }
+
+    let text = ``
+    +`-----------PRODUCTO-----------\n`
+    +`${prodList}`
+    +`* - Agregar nuevo producto\n`
+    +`0 - Volver\n`
+    +`------------------------------`;
+
+    return text;
+};
+
+const menuDisc = ""
 +"----------DESCUENTOS----------\n"
 +"- 3 productos = -10%\n"
 +"- 5 productos = -15%\n"
 +"- 7 productos = -25%\n"
 +"------------------------------";
 
-// VARIABLES GLOBALES
-let precioSuma = 0;
-let cantProd = 0;
-let descuento = 0;
-
-// Función que agrega un producto a la compra y muestra información
-function agregarProd(precio){
-    precioSuma += precio;
-    cantProd++;
-
-    alert("¡Producto agregado!\n\nPrecio del producto: $"+precio+".\n\nPrecio en total de la compra: $"+precioSuma+".\nCantidad de productos en la compra: "+cantProd+".");
-}
+// Array de productos dentro de la compra
+const buyProdList = [];
 
 // Función que calcula el debido Descuento a aplicar
-function calcDesc(){
-    if (cantProd >= 3 && cantProd < 5)
-        descuento = 10;
-    else if(cantProd >= 5 && cantProd < 7)
-        descuento = 15;
-    else if(cantProd >= 7)
-        descuento = 25;
+const discount = () => {
+    let quantity = buyProdList.length;
+
+    if(quantity >= 7)
+        return 25;
+    else if(quantity >= 5)
+        return 15;
+    else if(quantity >= 3)
+        return 10;
+    else
+        return 0;
+}
+
+// Función que agrega un producto a la compra y muestra información
+function buyProd(prod){
+    buyProdList.push(prod);
+
+    text = ``
+    +`¡Producto "${prod.name}" agregado!\n`
+    +`Precio del producto: $${prod.price}\n\n`
+    +`Precio en total de la compra: $${priceTotal(buyProdList)}\n`
+    +`Cantidad de productos en la compra: ${buyProdList.length}`;
+
+    alert(text);
+}
+
+// Devuelve el Precio Total de la compra
+const priceTotal = (products) => {
+    let total = 0;
+
+    if(products)
+    {
+        for (const prod of products) {
+            total += prod.price;
+        }
+    }
+
+    return total;
 }
 
 // Función que calcula y muestra el Precio Final
-function precioFinal(){
-    let pf = 0;
+function priceFinal(){
+    let final = 0;
+    let total = priceTotal(buyProdList);
 
-    calcDesc();
-    if (descuento == 0)
+    if(buyProdList.length == 0)
     {
-        pf = precioSuma;
-        alert("El Precio Final de su compra es de $"+pf+".\n\nLa compra no posee descuentos. 😕")
+        alert("Usted no agrego ningún producto a su compra. 🫤")
     }
     else
     {
-        pf = precioSuma - ((descuento / 100) * precioSuma);
-        alert("El Precio Final de su compra es de $"+pf+".\n\n¡La compra tiene agregado un descuento del "+descuento+"%! 🤑")
+        let prodList = "";
+        let i=1;
+
+        buyProdList.forEach( prod => {
+            prodList += `${i++} - ${prod.name} - $${prod.price}\n`;
+        });
+
+        if (discount() == 0)
+        {
+            final = total;
+            alert(prodList+"\nEl Precio Final de su compra es de $"+final+".\n\nLa compra no posee descuentos. 😕")
+        }
+        else
+        {
+            final = total - ((discount() / 100) * total);
+            alert(prodList+"\nEl Precio Final de su compra es de $"+final+".\n\n¡La compra tiene agregado un descuento del "+discount()+"%! 🤑")
+        }
     }
+}
+
+// Función utilizada para la selección de items del menu
+function selectProd()
+{
+    let input = prompt(menuProd());
+
+    if(input == "*")
+        return "*";
+    else
+        return parseInt(input);
+}
+
+// Función que al recibir un ID devuelve un producto
+function searchProd(id)
+{
+    return products.find(p => p.id == id)
+}
+
+// Función para añadir un nuevo producto a la lista
+function addProd()
+{
+    let name = "";
+    while(!name)
+        name = prompt("Ingrese el nombre del nuevo producto:");
+
+    let price;
+    while(!price)
+        price = parseInt(prompt("Ingrese el precio del nuevo producto:"));
+    
+    let prod = new Product(products.length+1, name, price);
+    products.push(prod);
 }
 
 // AUXILIARES PARA RECIBIR INPUTS
 let option = 0;
-let option2 = 0;
+let option2;
 
 // Bienvenida al programa y inicio de bucles de menus
 alert("¡Bienvenido al Calculador de Precios!")
 do{
-    option = parseInt(prompt(menu0));
+    option = parseInt(prompt(menu));
 
     switch(option)
     {
@@ -79,40 +172,30 @@ do{
         case 1 :
             do
             {
-                option2 = parseInt(prompt(menu1));
-                switch(option2)
+                option2 = selectProd();
+
+                if(option2 != 0 && option2 != "*")
                 {
-                    case 1:
-                        agregarProd(500);
-                        break;
-                    case 2:
-                        agregarProd(550);
-                        break;
-                    case 3:
-                        agregarProd(600);
-                        break;
-                    case 4:
-                        agregarProd(700);
-                        break;
-                    case 5:
-                        agregarProd(750);
-                        break;
-                    case 0:
-                        break;
-                    default:
-                        alert("Error 😵‍💫. La opción ingresada no es valida.\nIntente nuevamente.")
-                        break;
+                    let search = searchProd(option2);
+
+                    if(search)
+                        buyProd(search);
+                    else
+                        alert("Error 😵‍💫. La opción ingresada no es valida.\nIntente nuevamente.");
                 }
+                else if(option2 == "*")
+                    addProd();
+
             }
             while(option2 != 0)
             break;
         // Descuentos
         case 2:
-            alert(menu2);
+            alert(menuDisc);
             break;
         // Precio Final
         case 3:
-            precioFinal();
+            priceFinal();
             break;
         // Salir
         case 0:
