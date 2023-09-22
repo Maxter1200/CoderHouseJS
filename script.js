@@ -1,210 +1,224 @@
+// Array de Productos
+const products = [];
+
 // Clase Producto
 class Product{
-    constructor(id, name, price){
-        this.id = id;
+    constructor(name, model, category, featured, price, off, tags){
+        this.id = products.length+1;
         this.name = name;
+        this.model = model;
+        this.category = category;
+        this.featured = featured;
         this.price = price;
+        this.off = off;
+        this.tags = tags;
+        
+        const codName = name.replaceAll(" ","").toLowerCase();
+
+        const url =  model.length > 0 ? `res/img/prods/${codName}(${model}).png` : `res/img/prods/${codName}.png`;
+
+        this.image = url;
     }
 }
 
-// Array base de Objetos
-const products = [
-    new Product(1, "Notebook HP", 500),
-    new Product(2, "Notebook Acer", 550),
-    new Product(3, "Notebook Lenovo", 600),
-    new Product(4, "Notebook Asus", 700),
-    new Product(5, "Notebook Dell", 750)
-];
+// Función para cargar productos en el DOM, donde se pasan por parámetros el array de productos y el elemento HTML donde se quieren cargar
+function loadProductsDOM(arrayProd, elementHTML){
+    arrayProd.forEach(prod => {
+        let prodHTML = `
+        <div class="prodCard">
+            <img src="${prod.image}" alt="Imagen ${prod.name}">
+            <div class="prodInfo">
+                <h3 class="prodName">${prod.name}</h3>
+                <div class="prodMid">
+                    %REPLACE%
+                </div>
+                <div class="prodBottom">
+                    <button class="material-symbols-outlined prodDetail" id="prodDetail">other_admission</button>
+                    <button class="prodAdd" onclick="addProd(${prod.id});">
+                        <p>AGREGAR</p>
+                        <span class="material-symbols-outlined">add_circle</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        `;
 
+        let priceOff = 0;
 
-// MENUS
-const menu = ""
-+"-------------MENU-------------\n"
-+"1 - Productos\n"
-+"2 - Descuentos\n"
-+"3 - Precio de Compra\n"
-+"0 - Salir\n"
-+"------------------------------";
+        if(prod.off > 0)
+        { 
+            priceOff = prod.price - ((prod.price * prod.off) / 100);
 
-function menuProd(){
-    let prodList = "";
-
-    for(const prod of products){
-        prodList += `${prod.id} - ${prod.name} - $${prod.price}\n`;
-    }
-
-    let text = ``
-    +`-----------PRODUCTO-----------\n`
-    +`${prodList}`
-    +`* - Agregar nuevo producto\n`
-    +`0 - Volver\n`
-    +`------------------------------`;
-
-    return text;
-};
-
-const menuDisc = ""
-+"----------DESCUENTOS----------\n"
-+"- 3 productos = -10%\n"
-+"- 5 productos = -15%\n"
-+"- 7 productos = -25%\n"
-+"------------------------------";
-
-// Array de productos dentro de la compra
-const buyProdList = [];
-
-// Función que calcula el debido Descuento a aplicar
-const discount = () => {
-    let quantity = buyProdList.length;
-
-    if(quantity >= 7)
-        return 25;
-    else if(quantity >= 5)
-        return 15;
-    else if(quantity >= 3)
-        return 10;
-    else
-        return 0;
-}
-
-// Función que agrega un producto a la compra y muestra información
-function buyProd(prod){
-    buyProdList.push(prod);
-
-    text = ``
-    +`¡Producto "${prod.name}" agregado!\n`
-    +`Precio del producto: $${prod.price}\n\n`
-    +`Precio en total de la compra: $${priceTotal(buyProdList)}\n`
-    +`Cantidad de productos en la compra: ${buyProdList.length}`;
-
-    alert(text);
-}
-
-// Devuelve el Precio Total de la compra
-const priceTotal = (products) => {
-    let total = 0;
-
-    if(products)
-    {
-        for (const prod of products) {
-            total += prod.price;
-        }
-    }
-
-    return total;
-}
-
-// Función que calcula y muestra el Precio Final
-function priceFinal(){
-    let final = 0;
-    let total = priceTotal(buyProdList);
-
-    if(buyProdList.length == 0)
-    {
-        alert("Usted no agrego ningún producto a su compra. 🫤")
-    }
-    else
-    {
-        let prodList = "";
-        let i=1;
-
-        buyProdList.forEach( prod => {
-            prodList += `${i++} - ${prod.name} - $${prod.price}\n`;
-        });
-
-        if (discount() == 0)
-        {
-            final = total;
-            alert(prodList+"\nEl Precio Final de su compra es de $"+final+".\n\nLa compra no posee descuentos. 😕")
+            prodHTML = prodHTML.replace(`%REPLACE%`, 
+            `<div class="prodPriceBox">
+                <p class="prodPrice">$ ${priceOff}</p>
+                <p class="prodOff">-${prod.off}%</p>
+            </div>
+            <p class="prodNoOff">$ ${prod.price}</p>`);
         }
         else
         {
-            final = total - ((discount() / 100) * total);
-            alert(prodList+"\nEl Precio Final de su compra es de $"+final+".\n\n¡La compra tiene agregado un descuento del "+discount()+"%! 🤑")
+            priceOff = prod.price;
+
+            prodHTML = prodHTML.replace(`%REPLACE%`, 
+            `<div class="prodPriceBox">
+                <p class="prodPrice">$ ${priceOff}</p>
+            </div>`);
+        }
+
+        elementHTML.innerHTML += prodHTML;
+    });
+}
+
+/* 
+CATEGORÍAS
+
+1. Computadoras (Desktop, Servidor, Notebook, Netbook, Mini-PC, All In One)
+2. Componentes (Mother, CPU, RAM, GPU, Alm., Fuente, Gabinete, etc.)
+3. Periféricos (Mouse, Teclado, Monitor, Audio, etc.)
+4. Accesorios (Pad, Sillas, Mochilas, Alm. Ext., Cargadores, Luces LED, etc.)
+5. Conectividad y Redes (Cable, Adaptador, Modem, Router, Placa Red, etc.)
+*/
+
+products.push(new Product("ASUS Zenbook 15", "UM3504DA", 1, true, 1000, 15, ["computer","laptop"]));
+products.push(new Product("MSI Sword 15", "A12U", 1, false, 1250, 0, ["computer","laptop"]));
+products.push(new Product("Logitech G305 LightSpeed", "", 3, false, 50, 0, ["peripheral","mouse","wireless"]));
+products.push(new Product("Logitech G733", "", 3, true, 100, 10, ["peripheral","headset","wireless"]));
+products.push(new Product("REDRAGON Shiva K512", "", 3, false, 50, 0, ["peripheral","keyboard","mechanical"]));
+products.push(new Product("SAMSUNG LED 24", "LF24T350FHLCZB", 3, true, 75, 0, ["peripheral","monitor","ips"]));
+products.push(new Product("LIAN LI O11 Dynamic EVO", "O11DEX", 2, false, 150, 0, ["component","case"]));
+products.push(new Product("GIGABYTE Radeon RX 6700XT", "", 2, true, 500, 12, ["component","gpu"]));
+
+loadProductsDOM(products.filter((prod) => prod.featured == true), document.getElementById("featuredProds"));
+loadProductsDOM(products.filter((prod) => prod.featured == false), document.getElementById("newProds"));
+
+// Array de Bolsa de Compras
+const shopBagCountHTML = document.getElementById("shopBagCount");
+let shopBagProds = [];
+let shopBagQuantity = 0;
+
+// Si hay algo en el Local Storage, recupera info de ahí
+if(localStorage.getItem("shopBag") != null && localStorage.getItem("shopBag") != "[]") 
+{
+    shopBagProds = JSON.parse(localStorage.getItem("shopBag"));
+    shopBagQuantity = shopBagProds.reduce((sum, prod) => sum + prod.quantity, 0);
+    shopBagCountHTML.innerText = shopBagQuantity;
+
+    loadShopBagDOM(shopBagProds, document.getElementById("shopBag"));
+}
+
+// Función para agregar productos a la Bolsa de Compras
+function addProd(id){
+    const prodAdd = products.find((prod) => prod.id == id);
+    let priceOff = (prodAdd.off > 0) ? prodAdd.price - ((prodAdd.price * prodAdd.off) / 100) : prodAdd.price;
+
+    if(shopBagProds.length == 0 || shopBagProds.find((prod) => prod.id == id) == null)
+    {      
+        const obj = {
+            id: prodAdd.id,
+            quantity: 1,
+            name: prodAdd.name,
+            image: prodAdd.image,
+            price: priceOff
+        };
+
+        shopBagProds.push(obj);
+    }
+    else
+    {
+        shopBagProds.find((prod) => prod.id == id).quantity++;
+        shopBagProds.find((prod) => prod.id == id).price = priceOff * shopBagProds.find((prod) => prod.id == id).quantity;
+    }
+    
+    shopBagQuantity++;
+    shopBagCountHTML.innerText = shopBagQuantity;
+
+    localStorage.setItem("shopBag", JSON.stringify(shopBagProds));
+
+    loadShopBagDOM(shopBagProds, document.getElementById("shopBag"));
+}
+
+// Función que resta un producto existente de la Bolsa de Compras
+function subtractProd(id){
+    if(shopBagProds.find((prod) => prod.id == id) != null)
+    {
+        const prodSub = products.find((prod) => prod.id == id);
+
+        if(prodSub.quantity > 1)
+        {
+            shopBagProds.find((prod) => prod.id == id).quantity--;
+        }
+        else
+        {
+            shopBagProds = shopBagProds.filter((prod) => prod.id != id);
         }
     }
-}
-
-// Función utilizada para la selección de items del menu
-function selectProd()
-{
-    let input = prompt(menuProd());
-
-    if(input == "*")
-        return "*";
     else
-        return parseInt(input);
-}
-
-// Función que al recibir un ID devuelve un producto
-function searchProd(id)
-{
-    return products.find(p => p.id == id)
-}
-
-// Función para añadir un nuevo producto a la lista
-function addProd()
-{
-    let name = "";
-    while(!name)
-        name = prompt("Ingrese el nombre del nuevo producto:");
-
-    let price;
-    while(!price)
-        price = parseInt(prompt("Ingrese el precio del nuevo producto:"));
-    
-    let prod = new Product(products.length+1, name, price);
-    products.push(prod);
-}
-
-// AUXILIARES PARA RECIBIR INPUTS
-let option = 0;
-let option2;
-
-// Bienvenida al programa y inicio de bucles de menus
-alert("¡Bienvenido al Calculador de Precios!")
-do{
-    option = parseInt(prompt(menu));
-
-    switch(option)
     {
-        // Productos
-        case 1 :
-            do
-            {
-                option2 = selectProd();
+        console.log("ERROR: ID DE PRODUCTO NO ENCONTRADO");
+    }
+    
+    shopBagQuantity--;
+    shopBagCountHTML.innerText = shopBagQuantity;
 
-                if(option2 != 0 && option2 != "*")
-                {
-                    let search = searchProd(option2);
+    localStorage.setItem("shopBag", JSON.stringify(shopBagProds));
+    loadShopBagDOM(shopBagProds, document.getElementById("shopBag"));
+}
 
-                    if(search)
-                        buyProd(search);
-                    else
-                        alert("Error 😵‍💫. La opción ingresada no es valida.\nIntente nuevamente.");
-                }
-                else if(option2 == "*")
-                    addProd();
+// Función que elimina todas las cantidades de un producto existente de la Bolsa de Compras
+function removeProd(id){
+    if(shopBagProds.find((prod) => prod.id == id) != null)
+        shopBagProds = shopBagProds.filter((prod) => prod.id != id);
+    else
+        console.log("ERROR: ID DE PRODUCTO NO ENCONTRADO");
+    
+    shopBagQuantity = shopBagProds.reduce((sum, prod) => sum + prod.quantity, 0);
+    shopBagCountHTML.innerText = shopBagQuantity;
 
-            }
-            while(option2 != 0)
-            break;
-        // Descuentos
-        case 2:
-            alert(menuDisc);
-            break;
-        // Precio Final
-        case 3:
-            priceFinal();
-            break;
-        // Salir
-        case 0:
-            alert("¡Adios!")
-            break;
-        // Error
-        default:
-            alert("Error 😵‍💫. La opción ingresada no es valida.\nIntente nuevamente.")
-            break;
+    localStorage.setItem("shopBag", JSON.stringify(shopBagProds));
+    loadShopBagDOM(shopBagProds, document.getElementById("shopBag"));
+}
+
+// Función para cargar productos en el DOM y mostrarlos en la Bolsa de Compras
+function loadShopBagDOM(arrayProd, elementHTML) {
+    elementHTML.innerHTML = "<h3>Compras</h3>";
+    arrayProd.forEach(prod => {
+        let prodHTML = `
+        <div class="bagCard">
+            <img src="${prod.image}">
+            <div class="bagInfo">
+                <p class="bagName">${prod.name}</p>
+            <p class="bagPrice">$ ${prod.price}</p>
+                <div class="bagQuantity">
+                    <button class="material-symbols-outlined" onclick="subtractProd(${prod.id});">remove</button>
+                    <p>${prod.quantity}</p>
+                    <button class="material-symbols-outlined" onclick="addProd(${prod.id});">add</button>
+                </div>
+            </div>
+            <button class="bagRemove material-symbols-outlined" onclick="removeProd(${prod.id});">delete</button>
+        </div>
+        `;
+
+        elementHTML.innerHTML += prodHTML;
+    });
+}
+
+// Expandir el menú de la navbar
+let menuExpanded = true;
+const expandMenu = document.getElementById("expandMenu");
+
+expandMenu.onclick = () => {
+    const mainHTML = document.getElementsByTagName("main")[0];
+    if(!menuExpanded)
+    {
+        expandMenu.style.transform = "rotate(0deg)";
+        mainHTML.style.padding = "9.5em 0";
+        menuExpanded = true;
+    }
+    else
+    {
+        expandMenu.style.transform = "rotate(180deg)";
+        mainHTML.style.padding = "6em 0";
+        menuExpanded = false;
     }
 }
-while(option != 0);

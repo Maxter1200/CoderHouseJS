@@ -1,0 +1,99 @@
+// RESET CSS
+*{
+    margin: 0;
+    padding: 0;
+
+    font-family: Lato;
+}
+
+// FUENTE RESPONSIVE
+@media (width > 1400px){
+    html{
+        font-size: 120%;
+    }
+}
+
+@media (width < 1200px){
+    html{
+        font-size: 85%;
+    }
+}
+
+@media (width < 768px){
+    html{
+        font-size: 80%;
+    }
+}
+
+@media (width < 576px){
+    html{
+        font-size: 75%;
+    }
+}
+
+@media (width < 480px){
+    html{
+        font-size: 60%;
+    }
+}
+
+@media (width < 350px){
+    html{
+        font-size: 50%;
+    }
+}
+
+// ETIQUETAS PRINCIPALES
+header{
+    position: fixed;
+    z-index: 999;
+    
+    width: 100%;
+
+    box-shadow: 0 10px 10px rgba(#000000, .2);
+    
+    #nav1{
+        background-color: $color-bg-primary;
+    }
+    
+    #nav2{
+        background-color: $color-bg-secondary;
+    }
+}
+
+main{
+    padding: 9.5em 0;
+    background-color: white;
+
+    transition: padding .5s;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+h1{
+    color: $color-bg-secondary;
+    font-family: Urbanist;
+    font-weight: 750;
+}
+
+h2{
+    color: $color-secondary;
+    font-weight: 600;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 600,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+// HEADER
+@import "structure/header";
+
+// MAIN
+@import "structure/main";

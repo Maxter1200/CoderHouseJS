@@ -1,0 +1,514 @@
+@font-face {
+  font-family: Lato;
+  src: url("../res/fonts/Lato.ttf");
+}
+@font-face {
+  font-family: Urbanist;
+  src: url("../res/fonts/Urbanist.ttf");
+}
+@font-face {
+  font-family: Poppins;
+  src: url("../res/fonts/Poppins.ttf");
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Lato;
+}
+
+@media (width > 1400px) {
+  html {
+    font-size: 120%;
+  }
+}
+@media (width < 1200px) {
+  html {
+    font-size: 85%;
+  }
+}
+@media (width < 768px) {
+  html {
+    font-size: 80%;
+  }
+}
+@media (width < 576px) {
+  html {
+    font-size: 75%;
+  }
+}
+@media (width < 480px) {
+  html {
+    font-size: 60%;
+  }
+}
+@media (width < 350px) {
+  html {
+    font-size: 50%;
+  }
+}
+header {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+header #nav1 {
+  background-color: #eaeaea;
+}
+header #nav2 {
+  background-color: #053B50;
+}
+
+main {
+  padding: 9.5em 0;
+  background-color: white;
+  transition: padding 0.5s;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+h1 {
+  color: #053B50;
+  font-family: Urbanist;
+  font-weight: 750;
+}
+
+h2 {
+  color: #176B87;
+  font-weight: 600;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 600, "GRAD" 0, "opsz" 24;
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 6em;
+  margin-bottom: 0;
+  color: #053B50;
+  font-weight: 600;
+  list-style-type: none;
+}
+.navBar .logo {
+  height: 4em;
+}
+@media (width < 992px) {
+  .navBar p {
+    display: none;
+  }
+  .navBar .searchBar input::placeholder {
+    visibility: hidden;
+  }
+  .navBar span .col-1 {
+    display: none;
+  }
+}
+
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home p {
+  margin: 0;
+  padding-left: 0.5em;
+  color: #053B50;
+  font-family: Urbanist;
+  font-size: 1.75em;
+  font-weight: 700;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3em;
+  padding: 0 0.75em;
+  background-color: #053B50;
+  border-radius: 2em;
+}
+.searchBar span {
+  font-size: 1.75em;
+  color: #64CCC5;
+}
+.searchBar input {
+  width: 90%;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 1em;
+  background-color: #053B50;
+}
+.searchBar input::placeholder {
+  color: white;
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile p {
+  margin: 0;
+  padding-left: 0.5em;
+  font-size: 1.25em;
+}
+.profile img {
+  height: 2.5em;
+}
+
+.shopBag div button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+.shopBag div button p {
+  margin: 0;
+  padding-left: 0.5em;
+  color: #053B50;
+  font-size: 1.25em;
+  font-weight: 600;
+}
+.shopBag div button img {
+  height: 2.5em;
+}
+.shopBag div button span {
+  position: absolute;
+  top: 0;
+  right: 50%;
+  font-size: 0.65em;
+  color: #053B50;
+  background-color: #64CCC5;
+}
+.shopBag div .shopBagMenu {
+  width: 25em;
+  height: 30em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.5em;
+}
+.shopBag div .shopBagMenu h3 {
+  font-size: 1.25em;
+}
+.shopBag div .shopBagMenu .bagCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  width: 100%;
+  height: 7.5em;
+  padding: 1em;
+  margin-bottom: 1em;
+  background-color: #eaeaea;
+  border-radius: 0.75em;
+  box-shadow: 0 0.25em 1em 0.25em rgba(0, 0, 0, 0.2);
+}
+.shopBag div .shopBagMenu .bagCard img {
+  width: 30%;
+}
+.shopBag div .shopBagMenu .bagCard .bagInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 70%;
+  height: 100%;
+}
+.shopBag div .shopBagMenu .bagCard .bagInfo p {
+  margin: 0;
+}
+.shopBag div .shopBagMenu .bagCard .bagInfo .bagName {
+  overflow: hidden;
+  width: 100%;
+  font-size: 1em;
+  font-weight: 600;
+}
+.shopBag div .shopBagMenu .bagCard .bagInfo .bagPrice {
+  width: max-content;
+  padding: 0.25em 0.5em;
+  font-family: Poppins;
+  font-weight: 800;
+  color: white;
+  background-color: #053B50;
+  border-radius: 0.5em;
+}
+.shopBag div .shopBagMenu .bagCard .bagInfo .bagQuantity {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75em;
+  min-width: 100%;
+}
+.shopBag div .shopBagMenu .bagCard .bagInfo .bagQuantity button {
+  padding: 0.1em;
+  font-size: 1.25em;
+  color: #053B50;
+  background-color: #64CCC5;
+}
+.shopBag div .shopBagMenu .bagCard .bagInfo .bagQuantity button:first-child {
+  border-radius: 0.25em 0 0 0.25em;
+}
+.shopBag div .shopBagMenu .bagCard .bagInfo .bagQuantity button:last-child {
+  border-radius: 0 0.25em 0.25em 0;
+}
+.shopBag div .shopBagMenu .bagCard .bagRemove {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  padding: 0.25em 0.5em;
+  font-size: 1.25em;
+  color: white;
+  border-radius: 0.25em;
+  background-color: #176B87;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.expandMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.expandMenu button {
+  transition: transform 0.25s;
+}
+.expandMenu button span {
+  font-size: 2em;
+  color: #053B50;
+  transform: rotate(180deg);
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3.5em;
+  margin-bottom: 0;
+  padding: 0 8em;
+  color: #eaeaea;
+  list-style-type: none;
+}
+.menu li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+.menu li p {
+  margin: 0;
+  padding-left: 0.5em;
+  font-size: 1em;
+}
+.menu li span {
+  font-size: 1.5em;
+  color: #64CCC5;
+}
+
+.welcome {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+.welcome #carouselWelcome {
+  width: 100%;
+  max-width: 1920px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2), 10px 0 10px rgba(0, 0, 0, 0.2), -10px 0 10px rgba(0, 0, 0, 0.2);
+}
+.welcome #carouselWelcome img {
+  width: 100%;
+}
+@media (width < 768px) {
+  .welcome #carouselWelcome #carouselImg1 {
+    content: url("../res/img/banner/preBuild-mobile.jpg");
+  }
+  .welcome #carouselWelcome #carouselImg2 {
+    content: url("../res/img/banner/buildPc-mobile.jpg");
+  }
+  .welcome #carouselWelcome #carouselImg3 {
+    content: url("../res/img/banner/laptop-mobile.jpg");
+  }
+  .welcome #carouselWelcome #carouselImg4 {
+    content: url("../res/img/banner/mouse-mobile.jpg");
+  }
+}
+.welcome #carouselWelcome .carousel-indicators button {
+  width: 7.5em;
+  height: 0.25em;
+  background-color: #053B50;
+  border: 0;
+  border-radius: 1em;
+}
+.welcome #carouselWelcome .carousel-caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+.welcome #carouselWelcome .carousel-caption h3 {
+  font-family: Urbanist;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-shadow: 0 5px 5px black;
+}
+.welcome #carouselWelcome .carousel-caption p {
+  width: 45ch;
+  font-size: 1.25rem;
+  text-shadow: 0 2px 5px black, 0 2px 5px black;
+}
+
+.homeTitle {
+  padding-top: 2.5rem;
+}
+
+.itemShowcase {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 1.5rem 3rem;
+}
+
+.prodList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.prodCarousel {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2em;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  padding: 1em 3em;
+}
+
+.prodCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 17.5em;
+  height: 25em;
+  padding: 1em;
+  background-color: #eaeaea;
+  border-radius: 0.75em;
+  box-shadow: 0 0.25em 1em 0.25em rgba(0, 0, 0, 0.2);
+}
+.prodCard img {
+  height: 50%;
+  width: fit-content;
+  padding: 1em;
+}
+.prodCard .prodInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 50%;
+  padding: 1em;
+}
+.prodCard .prodInfo .prodName {
+  overflow: hidden;
+  width: 100%;
+  font-size: 1em;
+  font-weight: 600;
+}
+.prodCard .prodInfo .prodMid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  font-size: 1em;
+}
+.prodCard .prodInfo .prodMid .prodPriceBox {
+  display: flex;
+  align-items: center;
+}
+.prodCard .prodInfo .prodMid .prodPriceBox .prodPrice {
+  padding: 0.25em 0.5em;
+  font-family: Poppins;
+  font-weight: 800;
+  color: white;
+  background-color: #053B50;
+  border-radius: 0.5em;
+  z-index: 50;
+}
+.prodCard .prodInfo .prodMid .prodPriceBox .prodOff {
+  margin-left: -1em;
+  padding: 0.25em 0.75em 0.25em 1.5em;
+  font-family: Poppins;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: white;
+  background-color: #176B87;
+  border-radius: 1em 0;
+}
+.prodCard .prodInfo .prodMid .prodNoOff {
+  font-family: Poppins;
+  font-size: 0.85em;
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+.prodCard .prodInfo .prodBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.prodCard .prodInfo .prodBottom .material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+.prodCard .prodInfo .prodBottom .prodDetail {
+  padding: 0.25em 7.5%;
+  color: white;
+  background-color: #176B87;
+  border: 0;
+  border-radius: 0.25em;
+  font-size: 1.25em;
+}
+.prodCard .prodInfo .prodBottom .prodAdd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.5em 7.5%;
+  font-size: 0.75em;
+  color: #053B50;
+  background-color: #64CCC5;
+  border: 0;
+  border-radius: 0.5em;
+}
+.prodCard .prodInfo .prodBottom .prodAdd:active {
+  background-color: #053B50;
+  color: white;
+}
+.prodCard .prodInfo .prodBottom .prodAdd p {
+  margin: 0;
+  font-family: Poppins;
+  font-weight: 600;
+}
+.prodCard .prodInfo .prodBottom .prodAdd span {
+  font-size: 1.5em;
+}
+
+/*# sourceMappingURL=style.css.map */
