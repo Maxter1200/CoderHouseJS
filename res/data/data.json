@@ -1,0 +1,192 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "ASUS Zenbook 15",
+            "model": "UM3504DA",
+            "category": 1,
+            "featured": true,
+            "price": 1000,
+            "off": 15,
+            "image": "res/img/prods/asuszenbook15(UM3504DA).png",
+            "tags": ["computer","laptop"],
+            "details": {
+                "type": "Notebook",
+                "model": "UM3504DA",
+                "cpu": "AMD Ryzen 7 7735U - 2.7 GHz",
+                "ram": "16 GB LPDDR5",
+                "gpu": "AMD Radeon Graphics",
+                "storage": "1 TB M.2 NVMe",
+                "display": "2560x1440 OLED - 120 Hz",
+                "camera": "1080p FHD",
+                "audio": "2x Speaker, Microphone (harman/kardon)",
+                "network": "Wi-Fi 6E(802.11ax)",
+                "battery": "67 Wh",
+                "size": "15.6'",
+                "color": "Gris Basalto",
+                "dimensions": "35.48(W) x 22.66(D) x 1.49(H) cm",
+                "weight": "1.50 kg"
+            }
+        },
+        {
+            "id": 2,
+            "name": "AORUS 17",
+            "model": "BSF",
+            "category": 1,
+            "featured": false,
+            "price": 1250,
+            "off": 0,
+            "image": "res/img/prods/aorus17(BSF).png",
+            "tags": ["computer","laptop","gaming"],
+            "details": {
+                "type": "Notebook",
+                "model": "BSF",
+                "cpu": "Intel Core i7 13700H - 5.0 GHz",
+                "ram": "32 GB DDR5",
+                "gpu": "NVIDIA GeForce RTX 4070 Laptop",
+                "storage": "1 TB M.2 NVMe",
+                "display": "2560x1440 - 240 Hz",
+                "camera": "1080p FHD",
+                "audio": "2x 2W Speaker, Microphone",
+                "network": "Wi-Fi 6E(802.11ax), Ethernet",
+                "battery": "99 Wh",
+                "size": "17.3'",
+                "rgb": "Adressable RGB",
+                "color": "Negro",
+                "dimensions": "39.8(W) x 29.3(D) x 2.18(H) cm",
+                "weight": "2.80 kg"
+            }
+        },
+        {
+            "id": 3,
+            "name": "Logitech G305 LightSpeed",
+            "model": "",
+            "category": 3,
+            "featured": false,
+            "price": 50,
+            "off": 0,
+            "image": "res/img/prods/logitechg305lightspeed.png",
+            "tags": ["peripheral","mouse","wireless"],
+            "details": {
+                "type": "Mouse",
+                "model": "G305",
+                "sensor": "HERO, 200-12000 dpi",
+                "response": "1 ms",
+                "battery": "250 hs",
+                "color": "Negro",
+                "dimensions": "116.6(H) x 62.15(W) x 38.2(D) mm",
+                "weight": "99 g"
+            }
+        },
+        {
+            "id": 4,
+            "name": "Logitech G733",
+            "model": "",
+            "category": 3,
+            "featured": true,
+            "price": 150,
+            "off": 10,
+            "image": "res/img/prods/logitechg733.png",
+            "tags": ["peripheral","headset","wireless"],
+            "details": {
+                "type": "Auriculares",
+                "model": "G733",
+                "driver": "PRO-G 40 mm",
+                "response": "20 Hz - 20 kHz",
+                "impedance": "5k Ohms",
+                "sensitivity": "87.5 dB",
+                "mic": "Sí",
+                "battery": "29 hs, 20 hs (retroiluminado)",
+                "rgb": "RGB",
+                "color": "Negro",
+                "dimensions": "194(H) x 190(W) x 83(D) mm",
+                "weight": "278 g"
+            }
+        },
+        {
+            "id": 5,
+            "name": "REDRAGON Shiva K512",
+            "model": "",
+            "category": 3,
+            "featured": false,
+            "price": 36,
+            "off": 0,
+            "image": "res/img/prods/redragonshivak512.png",
+            "tags": ["peripheral","keyboard"],
+            "details": {
+                "type": "Teclado",
+                "model": "Shiva K512",
+                "keyboard": "Membrana con Reposamuñecas",
+                "distribution": "Español (Latinoamérica)",
+                "rgb": "RGB",
+                "color": "Negro",
+                "dimensions": "44(W) x 15,3(D) x 3,2(H) cm",
+                "weight": "1.09 kg"
+            }
+        },
+        {
+            "id": 6,
+            "name": "SAMSUNG LED 24",
+            "model": "LF24T350FHLCZB",
+            "category": 3,
+            "featured": true,
+            "price": 75,
+            "off": 0,
+            "image": "res/img/prods/samsungled24(LF24T350FHLCZB).png",
+            "tags": ["peripheral","monitor","ips"],
+            "details": {
+                "type": "Monitor",
+                "model": "LF24T350FHLCZB",
+                "display": "1920x1080 IPS - 75 Hz",
+                "response": "5 ms",
+                "brightness": "250cd/㎡",
+                "hdmi": "HDMI 1.4",
+                "size": "24'",
+                "color": "Negro",
+                "dimensions": "53.9(W) x 42.5(H) x 23.2(D) cm",
+                "weight": "2.7 kg"
+            }
+        },
+        {
+            "id": 7,
+            "name": "LIAN LI O11 Dynamic EVO",
+            "model": "O11DEX",
+            "category": 2,
+            "featured": false,
+            "price": 150,
+            "off": 0,
+            "image": "res/img/prods/lianlio11dynamicevo(O11DEX).png",
+            "tags": ["component","case"],
+            "details": {
+                "type": "Gabinete",
+                "model": "O11DEX",
+                "form-factor": "E-ATX/ATX/M-ATX/ITX",
+                "ports": "2x USB 3.0, 1x USB-C 3.1, 1 x HD AUDIO/MIC",
+                "rgb": "Adressable RGB",
+                "color": "Negro",
+                "dimensions": "46.5(D) x 28.5(W) x 45.9(H) cm"
+            }
+        },
+        {
+            "id": 8,
+            "name": "GIGABYTE Radeon RX 6700XT",
+            "model": "",
+            "category": 2,
+            "featured": true,
+            "price": 500,
+            "off": 12.5,
+            "image": "res/img/prods/gigabyteradeonrx6700xt.png",
+            "tags": ["component","gpu"],
+            "details": {
+                "type": "Placa de Video",
+                "model": "Radeon 6000 Series",
+                "core": "RX 6700 XT - 2622 MHz",
+                "ram": "12 GB GDDR6 - 16000 MHz",
+                "ports": "2x HDMI 2.1, 2x DisplayPort 1.4a",
+                "rgb": "Adressable RGB",
+                "color": "Plateado",
+                "dimensions": "281(D) x 115(W) x 49(H) mm"
+            }
+        }
+    ]
+}

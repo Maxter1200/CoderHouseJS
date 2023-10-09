@@ -1,0 +1,117 @@
+// ESTRUCTURA DEL LOGIN
+.loginLayout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+
+    padding-block: 2em;
+}
+
+// TITULO LOGIN
+.loginTitle{
+    width: 60vw;
+    max-width: 30rem;
+    margin: 0;
+}
+
+// LOGIN
+.login{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    width: 60vw;
+    max-width: 30rem;
+
+    padding: 2.5em 3.5em;
+
+    border-radius: .5em;
+
+    background-color: $color-bg-primary;
+    box-shadow: 0 .25em 1em .25em rgba(0, 0, 0, 0.2);
+
+    div{
+        display: flex;
+        flex-direction: column;
+        gap: .25em;
+
+        label{
+            color: $color-secondary;
+            font-weight: 600;
+        }
+
+        input{
+            padding: .25em .5em;
+            
+            border: .1em solid rgba(black, .5);
+            border-radius: .25em;
+            outline: none;
+
+            &:hover{
+                border: .1125em solid $color-secondary;
+            }
+
+            &:focus{
+                border: .125em solid rgba($color-bg-secondary, 0.8);
+            }
+
+            &::placeholder{
+                opacity: .65;
+            }
+        }
+    }
+
+    .checkBox{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: .5em;
+
+        padding: .5em 1em;
+        border: none;
+
+        input{
+            width: 1em;
+            height: 1em;
+        }
+    }
+
+    #btLogin, #btRegister{
+        margin-inline: .5em;
+
+        padding-block: .5em;
+        
+        color: white;
+        font-size: 1.5em;
+        font-weight: 600;
+
+        background-color: $color-primary;
+
+        border: none;
+        border-radius: .5em;
+        outline: none;
+
+        &:hover{
+            background-color: $color-secondary;
+        }
+        &:active{
+            background-color: $color-bg-secondary;
+        }
+    }
+
+    p{
+        margin-inline: auto;
+        a{
+            color: $color-secondary;
+            text-decoration: underline;
+
+            &:hover{
+                color: $color-primary;
+            }
+            &:active{
+                color: $color-bg-secondary;
+            }
+        }
+    }
+}

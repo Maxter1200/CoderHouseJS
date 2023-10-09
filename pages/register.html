@@ -10,7 +10,7 @@
     <!-- Toastify -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <!-- MetaData -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,8 +18,8 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="theme-color" content="#053B50">
-    <link rel="icon" type="image/jpg" href="res/img/logo.png"/>
-    <title>SparkForge</title>
+    <link rel="icon" type="image/jpg" href="../res/img/logo.png"/>
+    <title>SparkForge - Registrarse</title>
 </head>
 <body>
     <!-- HEADER -->
@@ -28,8 +28,8 @@
             <ul class="navBar container">
                 <!-- Logo de Inicio -->
                 <li class="col-2">
-                    <a class="home" href="index.html">
-                        <img class="logo" src="res/img/logo.png" alt="Logo SparkForge">
+                    <a class="home" href="../index.html">
+                        <img class="logo" src="../res/img/logo.png" alt="Logo SparkForge">
                         <p class="navBarText">SparkForge</p>
                     </a>
                 </li>
@@ -43,7 +43,7 @@
                 <!-- Perfil -->
                 <li class="col-1 dropdown-center">
                     <article class="profile" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                        <img src="res/icons/profile.svg" alt="Icono del Menú Perfil">
+                        <img src="../res/icons/profile.svg" alt="Icono del Menú Perfil">
                         <p class="navBarText">Perfil</p>
                     </article>
                     <ul class="profileMenu dropdown-menu" id="profileMenu">
@@ -53,7 +53,7 @@
                 <li class="col-1 dropdown">
                     <article class="shopBag" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                         <div class="counter">
-                            <img src="res/icons/shopBag.svg" alt="Icono de la Bolsa de Compras">
+                            <img src="../res/icons/shopBag.svg" alt="Icono de la Bolsa de Compras">
                             <span class="badge rounded-pill" id="shopBagCount"></span>
                         </div>
                         <p class="navBarText">Bolsa</p>
@@ -289,78 +289,25 @@
 
     <!-- MAIN -->
     <main>
-        <section class="welcome container-fluid">
-            <div id="carouselWelcome" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselWelcome" data-bs-slide-to="0" class="active"></button>
-                    <button type="button" data-bs-target="#carouselWelcome" data-bs-slide-to="1"></button>
-                    <button type="button" data-bs-target="#carouselWelcome" data-bs-slide-to="2"></button>
-                    <button type="button" data-bs-target="#carouselWelcome" data-bs-slide-to="3"></button>
+        <section class="loginLayout container">
+            <h1 class="loginTitle">Registrarse</h1>
+            <form class="login">
+                <div>
+                    <label for="txtEmail">Correo Electrónico</label>
+                    <input type="text" name="email" id="txtEmail" placeholder="nombre@email.com">
                 </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="7500">
-                        <img src="res/img/banner/preBuild.jpg" alt="Imagen de Setup Gamer" id="carouselImg1">
-                        <div class="carousel-caption">
-                            <h3>¡Bienvenidos a SparkForge!</h3>
-                            <p>Una tienda y taller de informática diseñada por amantes de la tecnología moderna</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item" data-bs-interval="5000">
-                        <img src="res/img/banner/buildPc.jpg" alt="Imagen de Armado de PC" id="carouselImg2">
-                        <div class="carousel-caption">
-                            <h3>Montado de PCs</h3>
-                            <p>Armamos PCs de Escritorio a medida usando los componentes y características que escojas</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item" data-bs-interval="5000">
-                        <img src="res/img/banner/laptop.jpg" alt="Imagen de Notebook" id="carouselImg3">
-                        <div class="carousel-caption">
-                            <h3>Computadoras y Notebooks</h3>
-                            <p>Podrás investigar nuestro amplio catálogo de equipos informáticos que cuentan con tecnología de punta</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item" data-bs-interval="5000">
-                        <img src="res/img/banner/mouse.jpg" alt="Imagen de Periféricos" id="carouselImg4">
-                        <div class="carousel-caption">
-                            <h3>Accesorios y Periféricos</h3>
-                            <p>Agrega a tu disposición aquellos accesorios que cumplan con tus necesidades y comodidades</p>
-                        </div>
-                    </div>
+                <div>
+                    <label for="txtPassword">Contraseña</label>
+                    <input type="password" name="password" id="txtPassword" placeholder="********">
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselWelcome" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselWelcome" data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+                <div class="checkBox">
+                    <input type="checkbox" name="terms" id="checkTerms">
+                    <label for="txtPassword">He leído y acepto los <u>Términos de Uso</u></label>
+                </div>
+                <button type="button" id="btRegister">Registrarse</button>
+                <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+            </form>
         </section>
-        <h1 class="homeTitle container">Inicio</h1>
-        <section class="itemShowcase container">
-            <article class="prodList">
-                <h2>Destacados</h2>
-                <div class="prodCarousel" id="featuredProds"></div>
-            </article>
-            <article class="prodList">
-                <h2>Nuevos</h2>
-                <div class="prodCarousel" id="newProds"></div>
-            </article>
-        </section>
-        <!-- Modal -->
-        <article class="modal fade" id="modalDetails" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title" id="modalDetailsTitle">Logitech G305 LightSpeed</h3>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <ul class="modal-body" id="modalDetailsBody">
-                    </ul>
-                </div>
-            </div>
-        </article>
     </main>
     
     <!-- FOOTER -->
@@ -391,5 +338,5 @@
 <!-- SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- JavaScript -->
-<script src="script.js"></script>
+<script src="../script.js"></script>
 </html>

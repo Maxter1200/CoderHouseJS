@@ -75,6 +75,12 @@
                 text-shadow: 0 2px 5px black, 0 2px 5px black;
             }
         }
+
+        [data-bs-slide]{
+            @media (width < 768px){
+                width: 12.5%;
+            }
+        }
     }
 }
 
@@ -184,10 +190,10 @@
                     font-weight: 800;
     
                     color: white;
-                    background-color: $color-bg-secondary;
+                    background-color: $color-secondary;
                     border-radius: .5em;
     
-                    z-index: 50;
+                    z-index: 2;
                 }
     
                 .prodOff{
@@ -200,7 +206,7 @@
                     font-weight: 600;
     
                     color: white;
-                    background-color: $color-secondary;
+                    background-color: $color-bg-secondary;
     
                     border-radius: 1em 0; 
                 }
@@ -235,12 +241,18 @@
 
                 color: white;
 
-                background-color: $color-secondary;
+                background-color: $color-bg-secondary;
 
                 border: 0;
                 border-radius: .25em;
 
                 font-size: 1.25em;
+
+                @include tooltip("Detalles", t, 3);
+
+                &::after {
+                    margin-left: -107.5%;
+                }
             }
 
             .prodAdd{
@@ -266,8 +278,6 @@
                 }
 
                 p{
-                    margin: 0;
-
                     font-family: Poppins;
                     font-weight: 600;
                 }
@@ -275,6 +285,59 @@
                 span{
                     font-size: 1.5em;
                 }
+            }
+        }
+    }
+}
+
+// Menu de Detalles Modal
+#modalDetails{
+    .modal-title{
+        font-size: 1.5em;
+    }
+    
+    .modal-body{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5em;
+        
+        margin: 0;
+
+        padding: 4em;
+        
+        list-style: none;
+    
+        li{
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: .5em;
+
+            span{
+                font-size: 1.5em;
+                color: $color-bg-secondary;
+                font-variation-settings:
+                'FILL' 0,
+                'wght' 650,
+                'GRAD' 0,
+                'opsz' 24
+            }
+
+            h4{
+                margin: 0;
+
+                text-overflow: ellipsis;
+
+                font-size: 1.25em;
+                font-weight: 600;
+            }
+
+            p{
+                width: 90%;
+
+                word-break: break-word;
+
+                padding-left: 2em;
             }
         }
     }

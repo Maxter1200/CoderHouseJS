@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: Lato;
   src: url("../res/fonts/Lato.ttf");
@@ -46,6 +47,22 @@
     font-size: 50%;
   }
 }
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #eaeaea;
+  border-radius: 10em;
+  margin-block: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10em;
+}
+
 header {
   position: fixed;
   z-index: 999;
@@ -60,9 +77,14 @@ header #nav2 {
 }
 
 main {
-  padding: 9.5em 0;
+  padding: 6em 0;
   background-color: white;
   transition: padding 0.5s;
+}
+
+footer {
+  width: 100%;
+  background-color: #176B87;
 }
 
 a {
@@ -81,7 +103,25 @@ h2 {
   font-weight: 600;
 }
 
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  user-select: none;
+}
+
+:disabled, [disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 .material-symbols-outlined {
+  user-select: none;
   font-variation-settings: "FILL" 1, "wght" 600, "GRAD" 0, "opsz" 24;
 }
 
@@ -97,9 +137,10 @@ h2 {
 }
 .navBar .logo {
   height: 4em;
+  user-select: none;
 }
 @media (width < 992px) {
-  .navBar p {
+  .navBar .navBarText {
     display: none;
   }
   .navBar .searchBar input::placeholder {
@@ -114,14 +155,47 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .home p {
-  margin: 0;
   padding-left: 0.5em;
   color: #053B50;
   font-family: Urbanist;
   font-size: 1.75em;
   font-weight: 700;
+}
+.home::after {
+  position: absolute;
+  content: "Inicio";
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: Lato;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: white;
+  white-space: nowrap;
+  border-radius: 0.5em;
+  box-shadow: 0 0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.25s;
+  bottom: 0;
+  left: 50;
+}
+@media (hover: hover) {
+  .home:hover::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -3.5em;
+  }
+}
+@media (hover: none) {
+  .home:active::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -3.5rem;
+  }
 }
 
 .searchBar {
@@ -155,125 +229,333 @@ h2 {
   align-items: center;
 }
 .profile p {
-  margin: 0;
   padding-left: 0.5em;
   font-size: 1.25em;
 }
 .profile img {
   height: 2.5em;
 }
+@media (width < 992px) {
+  .profile {
+    position: relative;
+  }
+  .profile::after {
+    position: absolute;
+    content: "Perfil";
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: Lato;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: white;
+    white-space: nowrap;
+    border-radius: 0.5em;
+    box-shadow: 0 0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.2);
+    z-index: 50;
+    transform: scale(0);
+    opacity: 0;
+    transition: 0.25s;
+    bottom: 0;
+    left: 50;
+  }
+}
+@media (width < 992px) and (hover: hover) {
+  .profile:hover::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -4em;
+  }
+}
+@media (width < 992px) and (hover: none) {
+  .profile:active::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -4rem;
+  }
+}
 
-.shopBag div button {
-  position: relative;
+.profileMenu {
+  border-radius: 0.5em;
+  box-shadow: 0 0.25em 1em 0.25em rgba(0, 0, 0, 0.2);
+}
+.profileMenu .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+@media (hover: hover) {
+  .profileMenu .dropdown-item:hover {
+    background-color: #176B87;
+    color: white;
+  }
+  .profileMenu .dropdown-item:hover span {
+    color: white;
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  }
+}
+.profileMenu .dropdown-item:active {
+  background-color: #64CCC5;
+  color: white;
+}
+.profileMenu .dropdown-item:active span {
+  color: white;
+}
+.profileMenu .dropdown-item span {
+  color: #053B50;
+  font-variation-settings: "FILL" 0, "wght" 550, "GRAD" 0, "opsz" 24;
+}
+
+.shopBag {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: none;
 }
-.shopBag div button p {
-  margin: 0;
+.shopBag p {
   padding-left: 0.5em;
   color: #053B50;
   font-size: 1.25em;
   font-weight: 600;
 }
-.shopBag div button img {
+.shopBag .counter {
+  position: relative;
+}
+.shopBag .counter img {
   height: 2.5em;
 }
-.shopBag div button span {
+.shopBag .counter span {
   position: absolute;
-  top: 0;
-  right: 50%;
+  bottom: -10%;
+  right: -10%;
   font-size: 0.65em;
+  font-weight: 1000;
   color: #053B50;
   background-color: #64CCC5;
 }
-.shopBag div .shopBagMenu {
-  width: 25em;
-  height: 30em;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 1.5em;
+@media (width < 992px) {
+  .shopBag {
+    position: relative;
+  }
+  .shopBag::after {
+    position: absolute;
+    content: "Bolsa";
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: Lato;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: white;
+    white-space: nowrap;
+    border-radius: 0.5em;
+    box-shadow: 0 0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.2);
+    z-index: 50;
+    transform: scale(0);
+    opacity: 0;
+    transition: 0.25s;
+    bottom: 0;
+    left: 50;
+  }
 }
-.shopBag div .shopBagMenu h3 {
+@media (width < 992px) and (hover: hover) {
+  .shopBag:hover::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -4em;
+  }
+}
+@media (width < 992px) and (hover: none) {
+  .shopBag:active::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -4rem;
+  }
+}
+
+.shopBagMenu {
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 40vw;
+  min-width: 27.5em;
+  height: 82.5vh;
+  max-height: 40em;
+  padding: 1.5em;
+  background-color: white;
+  border-radius: 0.5em;
+  box-shadow: 0 0.25em 1em 0.25em rgba(0, 0, 0, 0.2);
+}
+.shopBagMenu.dropdown-menu.show {
+  display: flex;
+}
+.shopBagMenu h3 {
   font-size: 1.25em;
 }
-.shopBag div .shopBagMenu .bagCard {
+.shopBagMenu .shopBagList {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  padding-bottom: 1em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  height: 75%;
+  scrollbar-gutter: stable;
+}
+.shopBagMenu .bagCard {
   position: relative;
   display: flex;
   align-items: center;
   gap: 1em;
-  width: 100%;
+  width: 92.5%;
   height: 7.5em;
   padding: 1em;
-  margin-bottom: 1em;
   background-color: #eaeaea;
+  box-shadow: 0 0.25em 0.75em 0.25em rgba(0, 0, 0, 0.15);
   border-radius: 0.75em;
-  box-shadow: 0 0.25em 1em 0.25em rgba(0, 0, 0, 0.2);
 }
-.shopBag div .shopBagMenu .bagCard img {
-  width: 30%;
+.shopBagMenu .bagCard img {
+  height: 100%;
 }
-.shopBag div .shopBagMenu .bagCard .bagInfo {
+.shopBagMenu .bagCard .bagInfo {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 70%;
-  height: 100%;
-}
-.shopBag div .shopBagMenu .bagCard .bagInfo p {
-  margin: 0;
-}
-.shopBag div .shopBagMenu .bagCard .bagInfo .bagName {
   overflow: hidden;
   width: 100%;
+  height: 100%;
+}
+.shopBagMenu .bagCard .bagInfo .bagName {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 65%;
   font-size: 1em;
   font-weight: 600;
 }
-.shopBag div .shopBagMenu .bagCard .bagInfo .bagPrice {
+.shopBagMenu .bagCard .bagInfo .bagPrice {
   width: max-content;
   padding: 0.25em 0.5em;
   font-family: Poppins;
   font-weight: 800;
   color: white;
-  background-color: #053B50;
+  background-color: #176B87;
   border-radius: 0.5em;
 }
-.shopBag div .shopBagMenu .bagCard .bagInfo .bagQuantity {
+.shopBagMenu .bagCard .bagInfo .bagQuantity {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.75em;
+  gap: 0.65em;
   min-width: 100%;
 }
-.shopBag div .shopBagMenu .bagCard .bagInfo .bagQuantity button {
-  padding: 0.1em;
+.shopBagMenu .bagCard .bagInfo .bagQuantity button {
+  padding: 0.2em 0.25em;
   font-size: 1.25em;
   color: #053B50;
   background-color: #64CCC5;
+  border: 0;
 }
-.shopBag div .shopBagMenu .bagCard .bagInfo .bagQuantity button:first-child {
+.shopBagMenu .bagCard .bagInfo .bagQuantity button:first-child {
   border-radius: 0.25em 0 0 0.25em;
 }
-.shopBag div .shopBagMenu .bagCard .bagInfo .bagQuantity button:last-child {
+.shopBagMenu .bagCard .bagInfo .bagQuantity button:last-child {
   border-radius: 0 0.25em 0.25em 0;
 }
-.shopBag div .shopBagMenu .bagCard .bagRemove {
+.shopBagMenu .bagCard .bagRemove {
   position: absolute;
   top: 10%;
   right: 5%;
   padding: 0.25em 0.5em;
   font-size: 1.25em;
   color: white;
+  border: 0;
   border-radius: 0.25em;
-  background-color: #176B87;
+  background-color: #053B50;
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+.shopBagMenu .shopBagBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.shopBagMenu .shopBagBottom .shopBagClear {
+  padding: 0.25em 0.5em;
+  font-size: 1.5em;
+  color: white;
+  border: 0;
+  border-radius: 0.25em;
+  background-color: #053B50;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  position: relative;
+}
+.shopBagMenu .shopBagBottom .shopBagClear::after {
+  position: absolute;
+  content: "Vaciar";
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: Lato;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: white;
+  white-space: nowrap;
+  border-radius: 0.5em;
+  box-shadow: 0 0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.25s;
+  top: 0;
+  left: 50;
+}
+@media (hover: hover) {
+  .shopBagMenu .shopBagBottom .shopBagClear:hover::after {
+    transform: scale(1);
+    opacity: 1;
+    top: -3em;
+  }
+}
+@media (hover: none) {
+  .shopBagMenu .shopBagBottom .shopBagClear:active::after {
+    transform: scale(1);
+    opacity: 1;
+    top: -3rem;
+  }
+}
+.shopBagMenu .shopBagBottom .shopBagClear::after {
+  margin-left: -3.25rem;
+}
+.shopBagMenu .shopBagBottom .shopBagTotal {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.shopBagMenu .shopBagBottom .shopBagTotal p {
+  padding: 0.5em 1.25em;
+  font-size: 1em;
+  font-family: Poppins;
+  font-weight: 600;
+  color: white;
+  background-color: #176B87;
+  border-radius: 0.5em;
+}
+.shopBagMenu .shopBagBottom .shopBagTotal button {
+  padding: 0.5em 1em;
+  font-size: 1.25em;
+  font-family: Poppins;
+  font-weight: 600;
+  color: white;
+  background-color: #64CCC5;
+  border: 0;
+  border-radius: 0.5em;
 }
 
 .expandMenu {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .expandMenu button {
   transition: transform 0.25s;
@@ -281,7 +563,39 @@ h2 {
 .expandMenu button span {
   font-size: 2em;
   color: #053B50;
-  transform: rotate(180deg);
+}
+.expandMenu::after {
+  position: absolute;
+  content: "Menú";
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: Lato;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: white;
+  white-space: nowrap;
+  border-radius: 0.5em;
+  box-shadow: 0 0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.25s;
+  bottom: 0;
+  left: 50;
+}
+@media (hover: hover) {
+  .expandMenu:hover::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -4em;
+  }
+}
+@media (hover: none) {
+  .expandMenu:active::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -4rem;
+  }
 }
 
 .menu {
@@ -294,6 +608,11 @@ h2 {
   color: #eaeaea;
   list-style-type: none;
 }
+@media (width < 576px) {
+  .menu .navBarText {
+    display: none;
+  }
+}
 .menu li {
   display: flex;
   justify-content: center;
@@ -301,13 +620,187 @@ h2 {
   font-weight: 600;
 }
 .menu li p {
-  margin: 0;
   padding-left: 0.5em;
   font-size: 1em;
 }
 .menu li span {
   font-size: 1.5em;
   color: #64CCC5;
+}
+
+.offers, .pcBuild, .helpCenter {
+  position: relative;
+}
+.offers::after, .pcBuild::after, .helpCenter::after {
+  position: absolute;
+  content: "Proximamente...";
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: Lato;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: white;
+  white-space: nowrap;
+  border-radius: 0.5em;
+  box-shadow: 0 0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.25s;
+  bottom: 0;
+  left: 50;
+}
+@media (hover: hover) {
+  .offers:hover::after, .pcBuild:hover::after, .helpCenter:hover::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -4em;
+  }
+}
+@media (hover: none) {
+  .offers:active::after, .pcBuild:active::after, .helpCenter:active::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -4rem;
+  }
+}
+
+.categories {
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+}
+@media (width < 576px) {
+  .categories {
+    position: relative;
+  }
+  .categories::after {
+    position: absolute;
+    content: "Categorías";
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: Lato;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: white;
+    white-space: nowrap;
+    border-radius: 0.5em;
+    box-shadow: 0 0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.2);
+    z-index: 50;
+    transform: scale(0);
+    opacity: 0;
+    transition: 0.25s;
+    bottom: 0;
+    left: 50;
+  }
+}
+@media (width < 576px) and (hover: hover) {
+  .categories:hover::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -3em;
+  }
+}
+@media (width < 576px) and (hover: none) {
+  .categories:active::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -3rem;
+  }
+}
+@media (width < 576px) {
+  .categories::after {
+    margin-left: -3em;
+  }
+}
+
+.categoriesMenu {
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  padding-block: 1.5em;
+  border: none;
+  border-radius: 0.75em;
+  box-shadow: 0 0.25em 1em 0.25em rgba(0, 0, 0, 0.2);
+  user-select: none;
+}
+.categoriesMenu .show {
+  display: flex;
+}
+.categoriesMenu li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  margin-right: 2em;
+  padding: 1em 2em;
+  border: none;
+  border-radius: 0 !important;
+}
+.categoriesMenu li span {
+  color: #053B50;
+  font-variation-settings: "FILL" 0, "wght" 700, "GRAD" 0, "opsz" 24;
+}
+.categoriesMenu li::after {
+  content: ">";
+  position: absolute;
+  right: 0;
+  margin-right: 1em;
+  color: #053B50;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+.categoriesMenu li:hover {
+  color: white;
+  background-color: #176B87;
+}
+.categoriesMenu li:hover span {
+  color: white;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+.categoriesMenu li:hover::after {
+  color: white;
+  font-weight: 400;
+}
+.categoriesMenu li:active {
+  color: white;
+  background-color: #64CCC5;
+}
+.categoriesMenu li:active span {
+  color: white;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+.categoriesMenu li:active::after {
+  color: white;
+  font-weight: 400;
+}
+.categoriesMenu hr {
+  width: 100%;
+  margin: 0;
+  background-color: #053B50;
+  opacity: 0.4;
+}
+.categoriesMenu .accordion-collapse {
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  text-wrap: nowrap;
+  padding: 1.5em 0;
+  background-color: white;
+  box-shadow: 0 0.25em 1em 0.25em rgba(0, 0, 0, 0.2);
+  border-radius: 0.75em;
+}
+.categoriesMenu .accordion-collapse .show {
+  display: flex;
+}
+.categoriesMenu .accordion-collapse li {
+  width: 15em;
+  margin: 0;
+}
+.categoriesMenu .accordion-collapse li::after {
+  display: none;
 }
 
 .welcome {
@@ -366,6 +859,11 @@ h2 {
   width: 45ch;
   font-size: 1.25rem;
   text-shadow: 0 2px 5px black, 0 2px 5px black;
+}
+@media (width < 768px) {
+  .welcome #carouselWelcome [data-bs-slide] {
+    width: 12.5%;
+  }
 }
 
 .homeTitle {
@@ -449,9 +947,9 @@ h2 {
   font-family: Poppins;
   font-weight: 800;
   color: white;
-  background-color: #053B50;
+  background-color: #176B87;
   border-radius: 0.5em;
-  z-index: 50;
+  z-index: 2;
 }
 .prodCard .prodInfo .prodMid .prodPriceBox .prodOff {
   margin-left: -1em;
@@ -460,7 +958,7 @@ h2 {
   font-size: 0.85em;
   font-weight: 600;
   color: white;
-  background-color: #176B87;
+  background-color: #053B50;
   border-radius: 1em 0;
 }
 .prodCard .prodInfo .prodMid .prodNoOff {
@@ -481,10 +979,47 @@ h2 {
 .prodCard .prodInfo .prodBottom .prodDetail {
   padding: 0.25em 7.5%;
   color: white;
-  background-color: #176B87;
+  background-color: #053B50;
   border: 0;
   border-radius: 0.25em;
   font-size: 1.25em;
+  position: relative;
+}
+.prodCard .prodInfo .prodBottom .prodDetail::after {
+  position: absolute;
+  content: "Detalles";
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: Lato;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: white;
+  white-space: nowrap;
+  border-radius: 0.5em;
+  box-shadow: 0 0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.25s;
+  top: 0;
+  left: 50;
+}
+@media (hover: hover) {
+  .prodCard .prodInfo .prodBottom .prodDetail:hover::after {
+    transform: scale(1);
+    opacity: 1;
+    top: -3em;
+  }
+}
+@media (hover: none) {
+  .prodCard .prodInfo .prodBottom .prodDetail:active::after {
+    transform: scale(1);
+    opacity: 1;
+    top: -3rem;
+  }
+}
+.prodCard .prodInfo .prodBottom .prodDetail::after {
+  margin-left: -107.5%;
 }
 .prodCard .prodInfo .prodBottom .prodAdd {
   display: flex;
@@ -503,12 +1038,221 @@ h2 {
   color: white;
 }
 .prodCard .prodInfo .prodBottom .prodAdd p {
-  margin: 0;
   font-family: Poppins;
   font-weight: 600;
 }
 .prodCard .prodInfo .prodBottom .prodAdd span {
   font-size: 1.5em;
+}
+
+#modalDetails .modal-title {
+  font-size: 1.5em;
+}
+#modalDetails .modal-body {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5em;
+  margin: 0;
+  padding: 4em;
+  list-style: none;
+}
+#modalDetails .modal-body li {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+#modalDetails .modal-body li span {
+  font-size: 1.5em;
+  color: #053B50;
+  font-variation-settings: "FILL" 0, "wght" 650, "GRAD" 0, "opsz" 24;
+}
+#modalDetails .modal-body li h4 {
+  margin: 0;
+  text-overflow: ellipsis;
+  font-size: 1.25em;
+  font-weight: 600;
+}
+#modalDetails .modal-body li p {
+  width: 90%;
+  word-break: break-word;
+  padding-left: 2em;
+}
+
+.loginLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  padding-block: 2em;
+}
+
+.loginTitle {
+  width: 60vw;
+  max-width: 30rem;
+  margin: 0;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 60vw;
+  max-width: 30rem;
+  padding: 2.5em 3.5em;
+  border-radius: 0.5em;
+  background-color: #eaeaea;
+  box-shadow: 0 0.25em 1em 0.25em rgba(0, 0, 0, 0.2);
+}
+.login div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+.login div label {
+  color: #176B87;
+  font-weight: 600;
+}
+.login div input {
+  padding: 0.25em 0.5em;
+  border: 0.1em solid rgba(0, 0, 0, 0.5);
+  border-radius: 0.25em;
+  outline: none;
+}
+.login div input:hover {
+  border: 0.1125em solid #176B87;
+}
+.login div input:focus {
+  border: 0.125em solid rgba(5, 59, 80, 0.8);
+}
+.login div input::placeholder {
+  opacity: 0.65;
+}
+.login .checkBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em 1em;
+  border: none;
+}
+.login .checkBox input {
+  width: 1em;
+  height: 1em;
+}
+.login #btLogin, .login #btRegister {
+  margin-inline: 0.5em;
+  padding-block: 0.5em;
+  color: white;
+  font-size: 1.5em;
+  font-weight: 600;
+  background-color: #64CCC5;
+  border: none;
+  border-radius: 0.5em;
+  outline: none;
+}
+.login #btLogin:hover, .login #btRegister:hover {
+  background-color: #176B87;
+}
+.login #btLogin:active, .login #btRegister:active {
+  background-color: #053B50;
+}
+.login p {
+  margin-inline: auto;
+}
+.login p a {
+  color: #176B87;
+  text-decoration: underline;
+}
+.login p a:hover {
+  color: #64CCC5;
+}
+.login p a:active {
+  color: #053B50;
+}
+
+.footerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5em;
+  padding: 2.5em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.footerTop .brand {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding-block: 2em;
+}
+.footerTop .brand h3 {
+  font-family: Urbanist;
+  font-size: 2em;
+  font-weight: 800;
+}
+.footerTop .brand p {
+  margin-top: 0.25em;
+  font-family: Poppins;
+  font-weight: 200;
+}
+.footerTop .contact {
+  display: grid;
+  align-items: center;
+  gap: 0.5em 1em;
+  grid-template-rows: repeat(2, 1fr);
+  grid-auto-columns: 2em;
+}
+.footerTop .contact h4 {
+  font-family: Urbanist;
+  font-weight: 600;
+  grid-row: 1;
+}
+.footerTop .contact i {
+  font-size: 1.75em;
+  grid-row: 2;
+  position: relative;
+}
+.footerTop .contact i::after {
+  position: absolute;
+  content: attr(data-tooltip);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: Lato;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: white;
+  white-space: nowrap;
+  border-radius: 0.5em;
+  box-shadow: 0 0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.25s;
+  bottom: 0;
+  left: 50;
+}
+@media (hover: hover) {
+  .footerTop .contact i:hover::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -2.75em;
+  }
+}
+@media (hover: none) {
+  .footerTop .contact i:active::after {
+    transform: scale(1);
+    opacity: 1;
+    bottom: -2.75rem;
+  }
+}
+.footerTop .contact i::after {
+  margin-left: -4.5em;
+}
+
+.disclaimer {
+  padding: 2.5em;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: justify;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,94 @@
+@mixin tooltip($text, $dir, $dist){
+    position: relative;
+
+    &::after{
+        position: absolute;
+
+        content: $text;
+
+        padding: .5rem 1.25rem;
+
+        font-size: .9rem;
+        font-weight: 600;
+        font-family: Lato;
+        color: rgba(black, .5);
+        background-color: white;
+        white-space: nowrap;
+        border-radius: .5em;
+
+        box-shadow: 0 .25rem .5rem .25rem rgba(0, 0, 0, .2);
+
+        z-index: 50;
+
+        transform: scale(0);
+        opacity: 0;
+
+        transition: .25s;
+
+        @if($dir == "top" or $dir == "up" or $dir == "t" or $dir == "u"){
+            top: 0;
+            left: 50;
+        }
+
+        @if($dir == "right" or $dir == "r"){
+            bottom: 50;
+            right: 0;
+        }
+
+        @if($dir == "bottom" or $dir == "bot" or $dir == "down" or $dir == "b" or $dir == "d"){
+            bottom: 0;
+            left: 50;
+        }
+
+        @if($dir == "left" or $dir == "l"){
+            bottom: 50;
+            left: 0;
+        }
+    }
+
+    @media (hover: hover){
+        &:hover::after{
+            transform: scale(1);
+            opacity: 1;
+    
+            @if($dir == "top" or $dir == "up" or $dir == "t" or $dir == "u"){
+                top: -#{$dist}em;
+            }
+    
+            @if($dir == "right" or $dir == "r"){
+                right: -#{$dist}em;
+            }
+    
+            @if($dir == "bottom" or $dir == "bot" or $dir == "down" or $dir == "b" or $dir == "d"){
+                bottom: -#{$dist}em;
+            }
+    
+            @if($dir == "left" or $dir == "l"){
+                left: -#{$dist}em;
+            }
+        }
+    }
+
+    @media (hover: none){
+        &:active::after{
+            transform: scale(1);
+            opacity: 1;
+    
+            @if($dir == "top" or $dir == "up" or $dir == "t" or $dir == "u"){
+                top: -#{$dist}rem;
+            }
+    
+            @if($dir == "right" or $dir == "r"){
+                right: -#{$dist}rem;
+            }
+    
+            @if($dir == "bottom" or $dir == "bot" or $dir == "down" or $dir == "b" or $dir == "d"){
+                bottom: -#{$dist}rem;
+            }
+    
+            @if($dir == "left" or $dir == "l"){
+                left: -#{$dist}rem;
+            }
+        }
+    }
+}

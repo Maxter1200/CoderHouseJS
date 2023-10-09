@@ -43,6 +43,23 @@
     }
 }
 
+// SCROLLBAR
+::-webkit-scrollbar{
+    width: .5em;
+    height: .5em;
+}
+
+::-webkit-scrollbar-track{
+    background-color: $color-bg-primary;
+    border-radius: 10em;
+    margin-block: .5em;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgba(black, .20);
+    border-radius: 10em;
+}
+
 // ETIQUETAS PRINCIPALES
 header{
     position: fixed;
@@ -62,10 +79,15 @@ header{
 }
 
 main{
-    padding: 9.5em 0;
+    padding: 6em 0;
     background-color: white;
 
     transition: padding .5s;
+}
+
+footer{
+    width: 100%;
+    background-color: $color-secondary;
 }
 
 a{
@@ -84,7 +106,26 @@ h2{
     font-weight: 600;
 }
 
+h3{
+    margin: 0;
+}
+
+p{
+    margin: 0;
+}
+
+img{
+    user-select: none;
+}
+
+// DESHABILITADOS
+:disabled, [disabled]{
+    cursor: not-allowed;
+    opacity: .6;
+}
+
 .material-symbols-outlined {
+    user-select: none;
     font-variation-settings:
     'FILL' 1,
     'wght' 600,
@@ -97,3 +138,6 @@ h2{
 
 // MAIN
 @import "structure/main";
+
+// FOOTER
+@import "structure/footer";
